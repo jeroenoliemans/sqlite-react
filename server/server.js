@@ -6,7 +6,7 @@ var db = require("./database.js");
 // Server port
 var HTTP_PORT = 8044;
 // Client port
-var CLIENT_HTTP_PORT = 8081
+var CLIENT_HTTP_PORT = 8055;
 
 // set cors
 app.use(function(req, res, next) {
