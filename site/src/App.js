@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import services  from './services';
 import SloganList from './SloganList';
+import SloganForm from './SloganForm';
 
 const App = ({ title }) => {
     const [slogans, setSlogans] = useState([]);
@@ -15,12 +16,23 @@ const App = ({ title }) => {
         });
     }
     
+    const addSlogan = (sloganText) => {
+        console.log('add', sloganText);
+    }
+
     useEffect(() => {
         getSlogans();
     }, []);
 
     return (
-        <SloganList slogans={slogans} />
+        <main>
+            <header>
+                <h1>Slogans</h1>
+                <SloganForm handleAddSlogan={addSlogan} />
+            </header>
+            <SloganList slogans={slogans} />
+        </main>
+        
     );
 }
   
