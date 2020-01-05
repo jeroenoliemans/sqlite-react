@@ -17,7 +17,12 @@ const App = ({ title }) => {
     }
     
     const addSlogan = (sloganText) => {
-        console.log('add', sloganText);
+        services.addSlogan(sloganText)
+        .then((response) => {
+            console.log(response);
+        }, (error) => {
+            console.log(error)
+        });
     }
 
     useEffect(() => {
@@ -25,8 +30,8 @@ const App = ({ title }) => {
     }, []);
 
     return (
-        <main>
-            <header>
+        <main className="App">
+            <header className="AppHeader">
                 <h1>Slogans</h1>
                 <SloganForm handleAddSlogan={addSlogan} />
             </header>

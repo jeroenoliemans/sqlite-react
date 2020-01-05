@@ -1,5 +1,6 @@
 // Create express app
 var express = require("express");
+var bodyParser = require("body-parser");
 var app = express();
 var db = require("./database.js");
 
@@ -7,6 +8,8 @@ var db = require("./database.js");
 var HTTP_PORT = 8044;
 // Client port
 var CLIENT_HTTP_PORT = 8055;
+
+app.use(bodyParser.json());
 
 // set cors
 app.use(function(req, res, next) {
@@ -61,7 +64,8 @@ app.get("/api/slogan/:id", (req, res, next) => {
 });
 
 // add one
-app.post("/api/user/", (req, res, next) => {
+app.post("/api/slogan/", (req, res, next) => {
+    console.log(req.body);
     var errors=[]
     if (!req.body.slogan){
         res.status(400).json({"error": "No slogan specified"});

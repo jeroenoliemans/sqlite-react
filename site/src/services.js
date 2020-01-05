@@ -1,16 +1,12 @@
 // ajax request helper
-function get(url, api = false) {
+function get(url, type = 'GET', data) {
 
     return new Promise(function(resolve, reject) {
         let req = new XMLHttpRequest();
 
-        req.open('GET', url);
-
-        // set headers
-        if (api) {
-            req.setRequestHeader('Accept', 'application/json');
-        }
-
+        req.open(type, url, true);
+        req.setRequestHeader('Accept', 'application/json');
+        
         req.onload = function() {
             if (req.status == 200) {
                 resolve(req.response);
@@ -23,7 +19,9 @@ function get(url, api = false) {
             reject(console.log('Network Error'));
         };
 
-        req.send();
+        let data = JSON.stringify(data);
+
+        type === 'POST' ? req.send(data) : req.send();
     });
 }
 
@@ -35,7 +33,7 @@ const services = {
     },
     addSlogan: (slogan) => {
         // param post
-        //return post(`${apiDomain}/api/slogan`);
+        return get(`${apiDomain}api/slogan`, 'POST', {"slogan": slogan});
     },
     getSlogan: (id) => {
         return get(`${apiDomain}/api/slogan/${id}`);

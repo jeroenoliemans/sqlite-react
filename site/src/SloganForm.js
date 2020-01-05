@@ -13,9 +13,9 @@ const SloganForm = ({handleAddSlogan}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="AppForm" onSubmit={handleSubmit}>
             <label htmlFor="newSlogan">
-                What needs to be done?
+                Add slogans
             </label>
             <input
                 id="newSlogan"
