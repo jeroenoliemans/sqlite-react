@@ -23,6 +23,16 @@ const App = ({ title }) => {
         }, (error) => {
             console.log(error)
         });
+    };
+
+    const removeSlogan = (dbId) => {
+        console.log(dbId)
+        services.deleteSlogan(dbId)
+        .then((response) => {
+            console.log(response);
+        }, (error) => {
+            console.log(error)
+        });
     }
 
     useEffect(() => {
@@ -35,7 +45,7 @@ const App = ({ title }) => {
                 <h1>Slogans</h1>
                 <SloganForm handleAddSlogan={addSlogan} />
             </header>
-            <SloganList slogans={slogans} />
+            <SloganList handleSlogansRemove={removeSlogan} slogans={slogans} />
         </main>
         
     );

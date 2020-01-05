@@ -1,13 +1,13 @@
 // ajax request helper
 function get(url, type = 'GET', data) {
-
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         let req = new XMLHttpRequest();
 
         req.open(type, url, true);
         req.setRequestHeader('Accept', 'application/json');
+        req.setRequestHeader("Content-type", "application/json");
         
-        req.onload = function() {
+        req.onload = () => {
             if (req.status == 200) {
                 resolve(req.response);
             } else {
@@ -15,13 +15,11 @@ function get(url, type = 'GET', data) {
             }
         };
 
-        req.onerror = function() {
+        req.onerror = () => {
             reject(console.log('Network Error'));
         };
 
-        let data = JSON.stringify(data);
-
-        type === 'POST' ? req.send(data) : req.send();
+        type === 'POST' ? req.send(JSON.stringify(data)) : req.send();
     });
 }
 
@@ -33,13 +31,13 @@ const services = {
     },
     addSlogan: (slogan) => {
         // param post
-        return get(`${apiDomain}api/slogan`, 'POST', {"slogan": slogan});
+        return get(`${apiDomain}api/slogan`, 'POST', {slogan: slogan});
     },
-    getSlogan: (id) => {
-        return get(`${apiDomain}/api/slogan/${id}`);
+    getSlogan: (dbId) => {
+        return get(`${apiDomain}api/slogan/${dbId}`);
     },
-    deleteSlogan: (id) => {
-        //return delete(`${apiDomain}/api/slogan/${id}`);
+    deleteSlogan: (dbId) => {
+        return get(`${apiDomain}api/slogan/${dbId}`, 'DELETE');
     }
 };
 

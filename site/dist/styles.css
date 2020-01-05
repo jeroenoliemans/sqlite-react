@@ -6,3 +6,12 @@ html, body {
 .App {
     width: 70vw;
 }
+
+.Slogans {
+
+}
+
+.Slogan{
+    display: flex;
+    justify-content: space-between;
+}

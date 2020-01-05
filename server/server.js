@@ -1,6 +1,5 @@
 // Create express app
 var express = require("express");
-var bodyParser = require("body-parser");
 var app = express();
 var db = require("./database.js");
 
@@ -9,11 +8,12 @@ var HTTP_PORT = 8044;
 // Client port
 var CLIENT_HTTP_PORT = 8055;
 
-app.use(bodyParser.json());
+app.use(express.json())
 
 // set cors
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
@@ -65,7 +65,6 @@ app.get("/api/slogan/:id", (req, res, next) => {
 
 // add one
 app.post("/api/slogan/", (req, res, next) => {
-    console.log(req.body);
     var errors=[]
     if (!req.body.slogan){
         res.status(400).json({"error": "No slogan specified"});
@@ -82,8 +81,7 @@ app.post("/api/slogan/", (req, res, next) => {
         }
         res.json({
             "message": "success",
-            "data": req.body.slogan,
-            "id" : this.lastID
+            "data": req.body.slogan
         })
     });
 })

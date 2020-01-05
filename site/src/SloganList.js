@@ -1,16 +1,16 @@
 import React from 'react';
 import Slogan from './Slogan';
 
-const SloganList = ({ slogans }) => {
+const SloganList = ({ slogans, handleSlogansRemove }) => {
 
     const listSlogansComponents = slogans.map((slogan, index) => 
-            <Slogan key={slogan.id} slogan={slogan.slogan} />
+            <Slogan handleSloganRemove={handleSlogansRemove} key={slogan.id} dbId={slogan.id} slogan={slogan.slogan} />
      );
 
     console.log(listSlogansComponents);
 
     return (
-        <div>{listSlogansComponents}</div>
+        <section className="Slogans">{listSlogansComponents}</section>
     );
 }
   
