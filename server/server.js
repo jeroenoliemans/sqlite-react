@@ -1,14 +1,15 @@
 // Create express app
-var express = require("express");
-var app = express();
-var db = require("./database.js");
+const express = require("express");
+const app = express();
+const db = require("./database.js");
 
 // Server port
-var HTTP_PORT = 8044;
+const HTTP_PORT = 8044;
 // Client port
-var CLIENT_HTTP_PORT = 8055;
+const CLIENT_HTTP_PORT = 8055;
 
-app.use(express.json())
+// body parser
+app.use(express.json());
 
 // set cors
 app.use(function(req, res, next) {
@@ -20,19 +21,19 @@ app.use(function(req, res, next) {
 
 // Start server
 app.listen(HTTP_PORT, () => {
-    console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
+    console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT));
 });
 // Root endpoint
 app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
+    res.json({"message":"Ok"});
 });
 
 // Insert here other API endpoints
 
 // get all
 app.get("/api/slogans", (req, res, next) => {
-    var sql = "select * from slogan"
-    var params = []
+    const sql = "select * from slogan";
+    let params = [];
     db.all(sql, params, (err, rows) => {
         if (err) {
           res.status(400).json({"error":err.message});
@@ -48,9 +49,9 @@ app.get("/api/slogans", (req, res, next) => {
 
 //get one
 app.get("/api/slogan/:id", (req, res, next) => {
-    var sql = "select * from slogan where id = ?"
+    const sql = "select * from slogan where id = ?"
     console.log(req.params.id);
-    var params = [req.params.id]
+    let params = [req.params.id]
     db.get(sql, params, (err, row) => {
         if (err) {
           res.status(400).json({"error":err.message});
@@ -65,18 +66,18 @@ app.get("/api/slogan/:id", (req, res, next) => {
 
 // add one
 app.post("/api/slogan/", (req, res, next) => {
-    var errors=[]
-    if (!req.body.slogan){
+    let errors=[]
+    if (!req.body.slogan) {
         res.status(400).json({"error": "No slogan specified"});
         return;
     }
 
-    var sql ='INSERT INTO slogan (slogan) VALUES (?)';
+    const sql ='INSERT INTO slogan (slogan) VALUES (?)';
     // body from post form react
-    var params =[req.body.slogan]
+    let params =[req.body.slogan]
     db.run(sql, params, function (err, result) {
-        if (err){
-            res.status(400).json({"error": err.message})
+        if (err) {
+            res.status(400).json({"error": err.message});
             return;
         }
         res.json({
@@ -93,7 +94,7 @@ app.delete("/api/slogan/:id", (req, res, next) => {
         req.params.id,
         function (err, result) {
             if (err){
-                res.status(400).json({"error": res.message})
+                res.status(400).json({"error": res.message});
                 return;
             }
             res.json({"message":"deleted", changes: this.changes})
@@ -102,5 +103,5 @@ app.delete("/api/slogan/:id", (req, res, next) => {
 
 // Default response for any other request
 app.use(function(req, res){
-    res.json({"status":"404"})
+    res.json({"status":"404"});
 });
