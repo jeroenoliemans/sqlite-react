@@ -22,7 +22,7 @@ const SloganForm = ({handleAddSlogan}) => {
                 onChange={(e) => {setAddSloganText(e.target.value)}}
                 value={addSloganText}
             />
-            <button title="Add slogan">+</button>
+            <button title="Add slogan">✚</button>
         </form>
     );
 }

@@ -34,6 +34,7 @@ label {
 
 p {
     text-align: left;
+    margin: 1rem 0;
 }
 
 input {
@@ -52,17 +53,28 @@ input {
     font-size: 1.5rem;
 }
 
+.SloganInput {
+    margin: 1rem 0;
+    height: 21px;
+}
+
+.SloganButtons {
+    display: flex;
+}
+
 button {
     border: none;
     width: 30px;
     height: 30px;
     border: none;
     border-radius: 50%;
+    border: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     cursor: pointer;
+    margin-left: 0.5rem
 }
 
 @media only screen and (min-width : 768px) {

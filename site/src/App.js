@@ -20,6 +20,7 @@ const App = ({ title }) => {
         services.addSlogan(sloganText)
         .then((response) => {
             console.log(response);
+            getSlogans();
         }, (error) => {
             console.log(error)
         });
@@ -30,6 +31,7 @@ const App = ({ title }) => {
         services.deleteSlogan(dbId)
         .then((response) => {
             console.log(response);
+            getSlogans();
         }, (error) => {
             console.log(error)
         });
