@@ -15,16 +15,14 @@ const SloganForm = ({handleAddSlogan}) => {
     return (
         <form className="AppForm" onSubmit={handleSubmit}>
             <label htmlFor="newSlogan">
-                Add slogans
+                add slogan ⇒
             </label>
             <input
                 id="newSlogan"
                 onChange={(e) => {setAddSloganText(e.target.value)}}
                 value={addSloganText}
             />
-            <button>
-                Add
-            </button>
+            <button title="Add slogan">+</button>
         </form>
     );
 }

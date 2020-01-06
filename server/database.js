@@ -19,8 +19,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             } else {
                 // Table just created, creating some rows
                 var insert = 'INSERT INTO slogan (slogan) VALUES (?)'
-                db.run(insert, ["My first slogan"]),
-                db.run(insert, ["Second slogan"])
+                db.run(insert, ["Feed the Planet and It Will Nourish You."]),
+                db.run(insert, ["Mother Earth Is Going to Get Mean If You Don't Go Green"])
             }
         });  
     }

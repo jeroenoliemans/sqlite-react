@@ -40,13 +40,13 @@ const App = ({ title }) => {
     }, []);
 
     return (
-        <main className="App">
+        <React.Fragment>
             <header className="AppHeader">
                 <h1>Slogans</h1>
                 <SloganForm handleAddSlogan={addSlogan} />
             </header>
             <SloganList handleSlogansRemove={removeSlogan} slogans={slogans} />
-        </main>
+        </React.Fragment>
         
     );
 }

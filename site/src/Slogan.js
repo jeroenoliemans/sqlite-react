@@ -8,7 +8,7 @@ const Slogan = ({ slogan, dbId, handleSloganRemove }) => {
     return (
         <div className="Slogan">
             <p>{slogan}</p>
-            <button onClick={() => handleRemove(dbId)}>remove</button>
+            <button title="remove slogan" onClick={() => handleRemove(dbId)}>-</button>
         </div>
     );
 }
