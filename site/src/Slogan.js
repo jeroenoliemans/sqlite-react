@@ -1,11 +1,22 @@
 import React, {useState} from 'react';
 
-const Slogan = ({ slogan, dbId, handleSloganRemove }) => {
+const Slogan = ({ 
+    slogan, 
+    dbId, 
+    handleSloganRemove, 
+    handleSaveSlogan
+}) => {
+    const [sloganText, setSloganText] = useState(slogan);
     const [edit, setEdit] = useState(false);
 
     const handleRemove = (dbId) => {
         handleSloganRemove(dbId);
-    }
+    };
+
+    const saveSlogan = (dbId) => {
+        console.log(sloganText)
+        handleSaveSlogan(dbId, sloganText);
+    };
 
     return (
         <React.Fragment>
@@ -14,8 +25,8 @@ const Slogan = ({ slogan, dbId, handleSloganRemove }) => {
                     <input
                         id="editSlogan"
                         className="SloganInput"
-                        onChange={(e) => {setAddSloganText(e.target.value)}}
-                        value={slogan}
+                        onChange={(e) => {setSloganText(e.target.value)}}
+                        value={sloganText}
                     />
                     <div className="SloganButtons">
                         <button title="save slogan" onClick={() => saveSlogan(dbId)}>⇅</button>
@@ -24,7 +35,7 @@ const Slogan = ({ slogan, dbId, handleSloganRemove }) => {
                 </div>
             ) : (
                 <div className="Slogan">
-                    <p>{slogan}</p>
+                    <p>{sloganText}</p>
                     <div className="SloganButtons">
                         <button title="edit slogan" onClick={(e) => {setEdit(true)}}>✎</button>
                         <button title="remove slogan" onClick={() => handleRemove(dbId)}>❌</button>

@@ -37,6 +37,17 @@ const App = ({ title }) => {
         });
     }
 
+    const saveSlogan = (dbId, newSloganText) => {
+        console.log(dbId, newSloganText);
+        // services.deleteSlogan(dbId)
+        // .then((response) => {
+        //     console.log(response);
+        //     getSlogans();
+        // }, (error) => {
+        //     console.log(error)
+        // });
+    }
+
     useEffect(() => {
         getSlogans();
     }, []);
@@ -47,9 +58,11 @@ const App = ({ title }) => {
                 <h1>Slogans</h1>
                 <SloganForm handleAddSlogan={addSlogan} />
             </header>
-            <SloganList handleSlogansRemove={removeSlogan} slogans={slogans} />
+            <SloganList 
+                handleSlogansRemove={removeSlogan}
+                handleSloganUpdate={saveSlogan} 
+                slogans={slogans} />
         </React.Fragment>
-        
     );
 }
   

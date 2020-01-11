@@ -30,8 +30,11 @@ const services = {
         return get(`${apiDomain}api/slogans`);
     },
     addSlogan: (slogan) => {
-        // param post
         return get(`${apiDomain}api/slogan`, 'POST', {slogan: slogan});
+    },
+    updateSlogan: (dbId, newSloganText) => {
+        console.log(newSloganText);
+        //return get(`${apiDomain}api/slogan/${dbId}`);
     },
     getSlogan: (dbId) => {
         return get(`${apiDomain}api/slogan/${dbId}`);
