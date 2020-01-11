@@ -19,7 +19,7 @@ function get(url, type = 'GET', data) {
             reject(console.log('Network Error'));
         };
 
-        type === 'POST' ? req.send(JSON.stringify(data)) : req.send();
+        (type === 'POST' || type === 'PUT') ? req.send(JSON.stringify(data)) : req.send();
     });
 }
 
@@ -33,8 +33,7 @@ const services = {
         return get(`${apiDomain}api/slogan`, 'POST', {slogan: slogan});
     },
     updateSlogan: (dbId, newSloganText) => {
-        console.log(newSloganText);
-        //return get(`${apiDomain}api/slogan/${dbId}`);
+        return get(`${apiDomain}api/slogan/${dbId}`, 'PUT', {slogan: newSloganText});
     },
     getSlogan: (dbId) => {
         return get(`${apiDomain}api/slogan/${dbId}`);

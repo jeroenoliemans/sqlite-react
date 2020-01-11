@@ -87,6 +87,27 @@ app.post("/api/slogan/", (req, res, next) => {
     });
 })
 
+//update one
+app.put("/api/slogan/:id", (req, res, next) => {
+    if (!req.body.slogan) {
+        res.status(400).json({"error": "No slogan specified"});
+        return;
+    }
+
+    const sql = 'UPDATE slogan SET slogan = ? WHERE id = ?'; 
+    let params = [req.body.slogan, req.params.id]
+    db.run(
+        sql,
+        params,
+        function (err, result) {
+            if (err){
+                res.status(400).json({"error": res.message});
+                return;
+            }
+            res.json({"message":"update", changes: this.changes})
+    });
+})
+
 // delete one
 app.delete("/api/slogan/:id", (req, res, next) => {
     db.run(

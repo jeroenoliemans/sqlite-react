@@ -14,8 +14,8 @@ const Slogan = ({
     };
 
     const saveSlogan = (dbId) => {
-        console.log(sloganText)
         handleSaveSlogan(dbId, sloganText);
+        setEdit(false);
     };
 
     return (

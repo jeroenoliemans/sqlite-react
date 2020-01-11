@@ -39,13 +39,14 @@ const App = ({ title }) => {
 
     const saveSlogan = (dbId, newSloganText) => {
         console.log(dbId, newSloganText);
-        // services.deleteSlogan(dbId)
-        // .then((response) => {
-        //     console.log(response);
-        //     getSlogans();
-        // }, (error) => {
-        //     console.log(error)
-        // });
+        services.updateSlogan(dbId, newSloganText)
+        .then((response) => {
+            console.log('update done')
+            console.log(response);
+            getSlogans();
+        }, (error) => {
+            console.log(error)
+        });
     }
 
     useEffect(() => {
