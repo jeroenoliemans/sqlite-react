@@ -15,7 +15,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             )`,
         (err) => {
             if (err) {
-                // Table is available
+                // table is available
             } else {
                 // Table just created, creating some rows
                 var insert = 'INSERT INTO slogan (slogan) VALUES (?)'

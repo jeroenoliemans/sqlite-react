@@ -1,19 +1,18 @@
-// Create express app
 const express = require("express");
 const app = express();
 const db = require("./database.js");
 
-// Server port
+// server port
 const HTTP_PORT = 8044;
-// Client port
+// client port
 const CLIENT_HTTP_PORT = 8055;
 
 // body parser
 app.use(express.json());
 
-// set cors
+// set headers
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*"); // wildcard, only for localhost
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -28,9 +27,9 @@ app.get("/", (req, res, next) => {
     res.json({"message":"Ok"});
 });
 
-// Insert here other API endpoints
+// SLOGAN API
 
-// get all
+// get all slogans
 app.get("/api/slogans", (req, res, next) => {
     const sql = "select * from slogan";
     let params = [];
@@ -47,7 +46,7 @@ app.get("/api/slogans", (req, res, next) => {
 });
 
 
-//get one
+//get one slogan
 app.get("/api/slogan/:id", (req, res, next) => {
     const sql = "select * from slogan where id = ?"
     console.log(req.params.id);
@@ -64,7 +63,7 @@ app.get("/api/slogan/:id", (req, res, next) => {
       });
 });
 
-// add one
+// add slogan
 app.post("/api/slogan/", (req, res, next) => {
     let errors=[]
     if (!req.body.slogan) {
@@ -87,7 +86,7 @@ app.post("/api/slogan/", (req, res, next) => {
     });
 })
 
-//update one
+//update slogan
 app.put("/api/slogan/:id", (req, res, next) => {
     if (!req.body.slogan) {
         res.status(400).json({"error": "No slogan specified"});
@@ -108,7 +107,7 @@ app.put("/api/slogan/:id", (req, res, next) => {
     });
 })
 
-// delete one
+// delete slogan
 app.delete("/api/slogan/:id", (req, res, next) => {
     db.run(
         'DELETE FROM slogan WHERE id = ?',
