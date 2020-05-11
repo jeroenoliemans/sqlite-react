@@ -49,7 +49,6 @@ app.get("/api/slogans", (req, res, next) => {
 //get one slogan
 app.get("/api/slogan/:id", (req, res, next) => {
     const sql = "select * from slogan where id = ?"
-    console.log(req.params.id);
     let params = [req.params.id]
     db.get(sql, params, (err, row) => {
         if (err) {
